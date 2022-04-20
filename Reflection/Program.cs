@@ -55,6 +55,17 @@ namespace Reflection
             long timeDeserialization = stopWatch.ElapsedMilliseconds;
             Console.WriteLine($"timeDeserialization: {timeDeserialization}");
 
+            // Десериализация newtonsoft.
+            F newtonsoftObj = null;
+            stopWatch.Restart();
+            for (int i = 0; i < 100000; i++)
+            {
+                newtonsoftObj = JsonConvert.DeserializeObject<F>(newtonsoftRes);
+            }
+            stopWatch.Stop();
+            long timeNewtonsoftDeser = stopWatch.ElapsedMilliseconds;
+            Console.WriteLine($"timeNewtonsoftDeser: {timeNewtonsoftDeser}");
+
 
             F fDeserialysed = (F)deserialysedObj;
             Console.WriteLine("Before:");
